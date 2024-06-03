@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ndt_contact', function (Blueprint $table) {
+        Schema::create('ndt_order', function (Blueprint $table) {
             $table->id(); //id
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('user_id');
             $table->string('name', 255);
-            $table->string('email', 255);
             $table->string('phone', 255);
-            $table->string('title', 255);
-            $table->mediumtext('content' );
-
-            $table->unsignedInteger('reply_id')->default(0);
-            $table->unsignedInteger('created_by')->nullable();
+            $table->string('email', 255);
+            $table->string('address', 255);
+            $table->string('note', 255)->nullable();
+            $table->unsignedTinyInteger('status')->default(2);
             $table->unsignedInteger('updated_by')->nullable();
 
             $table->timestamps(); //created,update_at
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ndt_contact');
+        Schema::dropIfExists('ndt_order');
     }
 };
